@@ -1,6 +1,5 @@
 1. repos
 neetcode 150 problems
-https://github.com/neetcode-gh/leetcode/tree/main/python
 
 2. image clustering
 https://github.com/qaioz/image_clustering
@@ -8,7 +7,7 @@ https://github.com/qaioz/image_clustering
 3. http database 
 https://github.com/qaioz/http_database_fastapi
 
-4. https://github.com/Sorrop/py-graph-algorithms
-
-5. https://github.com/TheAlgorithms/Python/tree/master/sorts
+https://github.com/neetcode-gh/leetcode/tree/main/python
+https://github.com/Sorrop/py-graph-algorithms
+https://github.com/TheAlgorithms/Python/tree/master/sorts
 

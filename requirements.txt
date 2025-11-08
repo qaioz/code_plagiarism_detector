@@ -1,1 +1,7 @@
 notebook
+aiohttp
+sentence-transformers
+torch
+tree_sitter_python
+faiss-cpu
+fastapi[standard]
