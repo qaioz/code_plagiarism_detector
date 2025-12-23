@@ -88,7 +88,7 @@ await fetch_urls_and_save_in_dirs()
 
 ## Chunking Implementation
 
-Then I implemented the chunking using the library I found: treesitter. 
+Then I implemented chunking using the library treesitter. 
 
 ``` python 
 import tree_sitter_python as tspython
@@ -122,9 +122,247 @@ def get_chunks_of_fuctions_and_classes_from_dir(dir_path):
 
 Then I tried to embedd fucions
 
-I was going to finish it and max it out. 
-I then decided it does not worth my time and I would rather 
-But dang, it, I will do it anyway, I will finish because I started 
+First I tried 7xx length vector embedding model "Alibaba" something. It was trash.
+Then I tried gemini-emebedding-001:
+
+```python 
+from google import genai
+from google.colab import userdata
+from google.genai import types
+google_key = userdata.get('GEMINI_API_KEY')
+client = genai.Client(api_key=google_key)
+
+
+def generate_embeddings(chunks:list[str]):
+  result = client.models.embed_content(
+          model="gemini-embedding-001",
+          contents=chunks,
+          config=types.EmbedContentConfig(task_type="RETRIEVAL_DOCUMENT")
+          )
+  embeddings = np.array([embedding.values for embedding in result.embeddings])
+  embeddings = embeddings.astype('float32')
+
+  return embeddings
+
+
+chunks = get_chunks_of_fuctions_and_classes_from_dir('sorts')
+embeddings = generate_embeddings(chunks)
+
+
+import numpy as np, faiss
+dim = embeddings.shape[1]
+faiss.normalize_L2(embeddings)
+metric = faiss.METRIC_INNER_PRODUCT
+M=32
+base = faiss.IndexHNSWFlat(dim, M, metric)
+base.hnsw.efConstruction = 200
+base.hnsw.efSearch = 64
+index = faiss.IndexIDMap2(base)
+ids = [i for i in range(embeddings.shape[0])]
+ids = np.array(ids)
+index.add_with_ids(embeddings, ids)
+```
+
+And test the embeddings:
+
+```python
+code = """
+
+def bucket_sort(my_list: list, bucket_count: int = 10) -> list:
+    ""
+    >>> data = [-1, 2, -5, 0]
+    >>> bucket_sort(data) == sorted(data)
+    True
+    >>> data = [9, 8, 7, 6, -12]
+    >>> bucket_sort(data) == sorted(data)
+    True
+    >>> data = [.4, 1.2, .1, .2, -.9]
+    >>> bucket_sort(data) == sorted(data)
+    True
+    >>> bucket_sort([]) == sorted([])
+    True
+   2, 2, 1, 1, 3]
+    >>> bucket_sort(data) == sorted(data)
+    True
+    >>> data = [5, 5, 5, 5, 5]
+"""
+search_chunks = [code]
+search_embed = generate_embeddings(search_chunks)
+faiss.normalize_L2(search_embed)
+D, I = index.search(search_embed, k=5)
+
+print(D,I)
+```
+
+It is works amazing. 
+
+
+
+Then I decided I was not going to spend any more time on this exercise, and focused all my time and energy with my  chatbot projects at Widgera. 
+
+About a month later, I decided that I am not giving up anything I start on the half way. 
+I am not starting any personal project till I finish this one. 
+
+Lets go. 
+
+## 2 positive and 2 negative examples:
+
+### Stalin Sort
+
+Obviously, I was gonna pick this one. 
+
+**Positive (Plagiarized):**
+```python
+def stalin_sort(sequence: list[int]) -> list[int]:
+    output = [sequence[0]]
+    for val in sequence[1:]:
+        if val >= output[-1]:
+            output.append(val)
+    return output
+```
+
+**Negative (Original):**
+```python
+def stalin_sort(sequence: list[int]) -> list[int]:
+    if not sequence:
+        return []
+    
+    filtered = [sequence[0]]
+    prev = sequence[0]
+    
+    for i in range(1, len(sequence)):
+        if sequence[i] >= prev:
+            filtered.append(sequence[i])
+            prev = sequence[i]
+    
+    return filtered
+```
+
+### Quick Sort
+
+**Positive (Plagiarized):**
+```python
+from random import randrange
+
+def quick_sort(collection: list) -> list:
+    if len(collection) < 2:
+        return collection
+    
+    idx = randrange(len(collection))
+    p = collection.pop(idx)
+    
+    left = [x for x in collection if x <= p]
+    right = [x for x in collection if x > p]
+    
+    return [*quick_sort(left), p, *quick_sort(right)]
+```
+
+**Negative (Original):**
+```python
+def quick_sort(collection: list) -> list:
+    if len(collection) <= 1:
+        return collection
+    
+    mid = len(collection) // 2
+    pivot = collection[mid]
+    
+    left = []
+    right = []
+    middle = []
+    
+    for item in collection:
+        if item < pivot:
+            left.append(item)
+        elif item > pivot:
+            right.append(item)
+        else:
+            middle.append(item)
+    
+    return quick_sort(left) + middle + quick_sort(right)
+```
+
+### Two Sum (NeetCode)
+
+**Positive (Plagiarized):**
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        seen = {}
+        
+        for idx, num in enumerate(nums):
+            complement = target - num
+            if complement in seen:
+                return [seen[complement], idx]
+            seen[num] = idx
+```
+
+**Negative (Original):**
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                if nums[i] + nums[j] == target:
+                    return [i, j]
+        return []
+```
+
+### Rotate List (NeetCode)
+
+**Positive (Plagiarized):**
+```python
+class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if not head or not head.next or k == 0:
+            return head
+        
+        start = head
+        node, length = head, 0
+        while node:
+            node, length = node.next, length + 1
+        
+        if k % length == 0:
+            return head
+        
+        k %= length
+        left = right = head
+        while right and right.next:
+            if k <= 0:
+                left = left.next
+            right = right.next
+            k -= 1
+        
+        tail, new_start, end = left, left.next, right
+        tail.next, end.next = None, start
+        
+        return new_start
+```
+
+**Negative (Original):**
+```python
+class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if not head:
+            return head
+        
+        nodes = []
+        curr = head
+        while curr:
+            nodes.append(curr)
+            curr = curr.next
+        
+        n = len(nodes)
+        k = k % n
+        if k == 0:
+            return head
+        
+        nodes[-1].next = nodes[0]
+        nodes[n - k - 1].next = None
+        
+        return nodes[n - k]
+```
+
+
 
 
 ## Links
