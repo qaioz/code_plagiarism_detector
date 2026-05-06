@@ -1,0 +1,13 @@
+{
+  "embed_model": "gemini-embedding-001",
+  "embed_dim": 3072,
+  "num_chunks": 70,
+  "repos": [
+    "hackerrank",
+    "keon_graph",
+    "math",
+    "neetcode",
+    "pyrival"
+  ],
+  "faiss_index_type": "IndexIDMap2(IndexHNSWFlat, METRIC_INNER_PRODUCT)"
+}

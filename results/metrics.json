@@ -1,0 +1,439 @@
+{
+  "main": {
+    "embedding": {
+      "precision": 0.9285714285714286,
+      "recall": 0.8666666666666667,
+      "f1": 0.896551724137931,
+      "accuracy": 0.9,
+      "confusion_matrix": [
+        [
+          14,
+          1
+        ],
+        [
+          2,
+          13
+        ]
+      ],
+      "avg_latency_s": 5.6690006971359255
+    },
+    "llm_full": {
+      "precision": 0.9375,
+      "recall": 1.0,
+      "f1": 0.967741935483871,
+      "accuracy": 0.9666666666666667,
+      "confusion_matrix": [
+        [
+          14,
+          1
+        ],
+        [
+          0,
+          15
+        ]
+      ],
+      "avg_latency_s": 17.964121993382772
+    },
+    "rag": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "confusion_matrix": [
+        [
+          15,
+          0
+        ],
+        [
+          0,
+          15
+        ]
+      ],
+      "avg_latency_s": 35.45094934304555
+    },
+    "hybrid_rag": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "confusion_matrix": [
+        [
+          15,
+          0
+        ],
+        [
+          0,
+          15
+        ]
+      ],
+      "avg_latency_s": 35.17065561612447
+    }
+  },
+  "threshold_ablation": {
+    "0.70": {
+      "precision": 0.6,
+      "recall": 1.0,
+      "f1": 0.75,
+      "accuracy": 0.6666666666666666,
+      "confusion_matrix": [
+        [
+          5,
+          10
+        ],
+        [
+          0,
+          15
+        ]
+      ],
+      "avg_latency_s": 0.0
+    },
+    "0.74": {
+      "precision": 0.7142857142857143,
+      "recall": 1.0,
+      "f1": 0.8333333333333334,
+      "accuracy": 0.8,
+      "confusion_matrix": [
+        [
+          9,
+          6
+        ],
+        [
+          0,
+          15
+        ]
+      ],
+      "avg_latency_s": 0.0
+    },
+    "0.78": {
+      "precision": 0.8333333333333334,
+      "recall": 1.0,
+      "f1": 0.9090909090909091,
+      "accuracy": 0.9,
+      "confusion_matrix": [
+        [
+          12,
+          3
+        ],
+        [
+          0,
+          15
+        ]
+      ],
+      "avg_latency_s": 0.0
+    },
+    "0.80": {
+      "precision": 0.875,
+      "recall": 0.9333333333333333,
+      "f1": 0.9032258064516129,
+      "accuracy": 0.9,
+      "confusion_matrix": [
+        [
+          13,
+          2
+        ],
+        [
+          1,
+          14
+        ]
+      ],
+      "avg_latency_s": 0.0
+    },
+    "0.82": {
+      "precision": 0.9285714285714286,
+      "recall": 0.8666666666666667,
+      "f1": 0.896551724137931,
+      "accuracy": 0.9,
+      "confusion_matrix": [
+        [
+          14,
+          1
+        ],
+        [
+          2,
+          13
+        ]
+      ],
+      "avg_latency_s": 0.0
+    },
+    "0.84": {
+      "precision": 0.8888888888888888,
+      "recall": 0.5333333333333333,
+      "f1": 0.6666666666666666,
+      "accuracy": 0.7333333333333333,
+      "confusion_matrix": [
+        [
+          14,
+          1
+        ],
+        [
+          7,
+          8
+        ]
+      ],
+      "avg_latency_s": 0.0
+    },
+    "0.86": {
+      "precision": 1.0,
+      "recall": 0.4,
+      "f1": 0.5714285714285714,
+      "accuracy": 0.7,
+      "confusion_matrix": [
+        [
+          15,
+          0
+        ],
+        [
+          9,
+          6
+        ]
+      ],
+      "avg_latency_s": 0.0
+    },
+    "0.88": {
+      "precision": 1.0,
+      "recall": 0.13333333333333333,
+      "f1": 0.23529411764705882,
+      "accuracy": 0.5666666666666667,
+      "confusion_matrix": [
+        [
+          15,
+          0
+        ],
+        [
+          13,
+          2
+        ]
+      ],
+      "avg_latency_s": 0.0
+    }
+  },
+  "k_ablation": {
+    "rag": {
+      "5": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "accuracy": 1.0,
+        "confusion_matrix": [
+          [
+            15,
+            0
+          ],
+          [
+            0,
+            15
+          ]
+        ],
+        "avg_latency_s": 35.45094934304555
+      },
+      "1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "accuracy": 1.0,
+        "confusion_matrix": [
+          [
+            15,
+            0
+          ],
+          [
+            0,
+            15
+          ]
+        ],
+        "avg_latency_s": 12.624512155850729
+      },
+      "3": {
+        "precision": 0.9375,
+        "recall": 1.0,
+        "f1": 0.967741935483871,
+        "accuracy": 0.9666666666666667,
+        "confusion_matrix": [
+          [
+            14,
+            1
+          ],
+          [
+            0,
+            15
+          ]
+        ],
+        "avg_latency_s": 15.022565897305807
+      },
+      "10": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "accuracy": 1.0,
+        "confusion_matrix": [
+          [
+            15,
+            0
+          ],
+          [
+            0,
+            15
+          ]
+        ],
+        "avg_latency_s": 16.02381686369578
+      }
+    },
+    "hybrid_rag": {
+      "5": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "accuracy": 1.0,
+        "confusion_matrix": [
+          [
+            15,
+            0
+          ],
+          [
+            0,
+            15
+          ]
+        ],
+        "avg_latency_s": 35.17065561612447
+      },
+      "1": {
+        "precision": 1.0,
+        "recall": 0.9333333333333333,
+        "f1": 0.9655172413793104,
+        "accuracy": 0.9666666666666667,
+        "confusion_matrix": [
+          [
+            15,
+            0
+          ],
+          [
+            1,
+            14
+          ]
+        ],
+        "avg_latency_s": 12.924799036979675
+      },
+      "3": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "accuracy": 1.0,
+        "confusion_matrix": [
+          [
+            15,
+            0
+          ],
+          [
+            0,
+            15
+          ]
+        ],
+        "avg_latency_s": 15.488790472348532
+      },
+      "10": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "accuracy": 1.0,
+        "confusion_matrix": [
+          [
+            15,
+            0
+          ],
+          [
+            0,
+            15
+          ]
+        ],
+        "avg_latency_s": 15.824582044283549
+      }
+    }
+  },
+  "alpha_ablation": {
+    "0.50": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "confusion_matrix": [
+        [
+          15,
+          0
+        ],
+        [
+          0,
+          15
+        ]
+      ],
+      "avg_latency_s": 35.17065561612447
+    },
+    "0.00": {
+      "precision": 0.8823529411764706,
+      "recall": 1.0,
+      "f1": 0.9375,
+      "accuracy": 0.9333333333333333,
+      "confusion_matrix": [
+        [
+          13,
+          2
+        ],
+        [
+          0,
+          15
+        ]
+      ],
+      "avg_latency_s": 11.04871425628662
+    },
+    "0.25": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "confusion_matrix": [
+        [
+          15,
+          0
+        ],
+        [
+          0,
+          15
+        ]
+      ],
+      "avg_latency_s": 9.31467310587565
+    },
+    "0.75": {
+      "precision": 0.9375,
+      "recall": 1.0,
+      "f1": 0.967741935483871,
+      "accuracy": 0.9666666666666667,
+      "confusion_matrix": [
+        [
+          14,
+          1
+        ],
+        [
+          0,
+          15
+        ]
+      ],
+      "avg_latency_s": 10.054850522677103
+    },
+    "1.00": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "accuracy": 1.0,
+      "confusion_matrix": [
+        [
+          15,
+          0
+        ],
+        [
+          0,
+          15
+        ]
+      ],
+      "avg_latency_s": 9.975638405481975
+    }
+  }
+}
